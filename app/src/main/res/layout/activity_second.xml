@@ -1,42 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.SecondActivity">
+
+    <ImageView
+        android:id="@+id/img_result_love"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/result_love_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_you_me"
+        android:text="@string/you_and_me"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_result_love"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        android:text="@string/your_score"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_you_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_percentage"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="38sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        tools:text="100%"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="0%"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_result"
+        android:layout_marginTop="12dp"
+        tools:text="The Best!"
+        android:textSize="20sp"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_percentage"
-        android:textSize="32sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_again"
-        android:textSize="28sp"
-        android:text="Again"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_try_again"
+        app:cornerRadius="15dp"
+        android:paddingHorizontal="28dp"
+        android:paddingVertical="8dp"
+        android:textSize="24sp"
+        android:text="@string/try_again"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

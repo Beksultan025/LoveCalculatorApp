@@ -2,54 +2,94 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/red"
+    tools:context=".ui.MainActivity">
 
-    <TextView
-        android:id="@+id/tv_love"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_circular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Love Calculator"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/ed_f_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Введите первое имя: "
-        android:textColor="@color/black"
+        android:elevation="1dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/red"
+        android:progress="50"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_love" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:trackColor="@color/white"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/img_love"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/love_img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/first_name"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/et_first_name"
+        app:layout_constraintTop_toBottomOf="@id/img_love" />
 
     <EditText
-        android:id="@+id/ed_s_name"
+        android:id="@+id/et_first_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="Введите второе имя: "
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ed_f_name" />
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/rounded_edit_text"
+        android:hint="@string/me"
+        android:importantForAutofill="no"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_first_name"
+        tools:ignore="TextFields" />
 
-    <Button
+    <TextView
+        android:id="@+id/tv_second_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/second_name"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/et_first_name"
+        app:layout_constraintTop_toBottomOf="@id/et_first_name" />
+
+    <EditText
+        android:id="@+id/et_second_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/rounded_edit_text"
+        android:hint="@string/you"
+        android:importantForAutofill="no"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_second_name"
+        tools:ignore="TextFields" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_calculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ok"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
+        android:paddingHorizontal="26dp"
+        android:text="@string/calculate"
+        android:textSize="28sp"
+        app:cornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ed_s_name" />
+        app:layout_constraintTop_toBottomOf="@id/et_second_name"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
