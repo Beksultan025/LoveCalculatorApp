@@ -11,7 +11,7 @@ interface LoveApiService {
     fun getPercentage(
         @Query("fname") firstName: String,
         @Query("sname") secondName: String,
-        @Header("x-rapidapi-key") key : String,
-        @Header("x-rapidapi-host") host : String
+        @Header("x-rapidapi-key") key: String,
+        @Header("x-rapidapi-host") host: String
     ): Call<LoveModel>
 }

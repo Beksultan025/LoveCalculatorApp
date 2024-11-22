@@ -5,18 +5,21 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.lovecalculatorapp.data.LoveApiService
 import com.example.lovecalculatorapp.data.LoveModel
-import com.example.lovecalculatorapp.data.RetrofitInstance
 import com.example.lovecalculatorapp.utils.Constant
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class LoveViewModel : ViewModel() {
+@HiltViewModel
+class LoveViewModel @Inject constructor(
+    private val retrofit : LoveApiService
+) : ViewModel() {
 
-    private val api = RetrofitInstance.api
     var isProgressVisible = MutableLiveData(false)
-
 
     fun getPercentage(
         firstName: String,
@@ -28,7 +31,7 @@ class LoveViewModel : ViewModel() {
             Toast.makeText(firstActivity, "Text is Empty !", Toast.LENGTH_SHORT).show()
         } else {
             isProgressVisible.value = true
-            api.getPercentage(firstName, secondName, Constant.API_KEY, Constant.HOST)
+            retrofit.getPercentage(firstName, secondName, Constant.API_KEY, Constant.HOST)
                 .enqueue(object : Callback<LoveModel> {
                     override fun onResponse(p0: Call<LoveModel>, response: Response<LoveModel>) {
                         isProgressVisible.value = false
