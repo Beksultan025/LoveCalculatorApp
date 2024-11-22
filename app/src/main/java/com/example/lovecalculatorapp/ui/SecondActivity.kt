@@ -12,20 +12,21 @@ class SecondActivity : AppCompatActivity() {
         ActivitySecondBinding.inflate(layoutInflater)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        val data = intent.getSerializableExtra(ARG_LOVE_MODEL_KEY) as LoveModel
-
-        binding.tvYouMe.text = "${data.firstName} and ${data.secondName}"
-        binding.tvPercentage.text = "${data.percentage}%"
-        binding.tvResult.text = data.result
-
+        loveDataObserve()
         binding.btnTryAgain.setOnClickListener {
             finish()
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun loveDataObserve() = with(binding) {
+        val data = intent.getSerializableExtra(ARG_LOVE_MODEL_KEY) as LoveModel
+        tvYouMe.text = "${data.firstName} and ${data.secondName}"
+        tvPercentage.text = "${data.percentage}%"
+        tvResult.text = data.result
     }
 
     companion object {
