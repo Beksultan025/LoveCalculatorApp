@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoveViewModel @Inject constructor(
-    private val retrofit : LoveApiService
+    private val api: LoveApiService
 ) : ViewModel() {
 
     var isProgressVisible = MutableLiveData(false)
@@ -31,7 +31,7 @@ class LoveViewModel @Inject constructor(
             Toast.makeText(firstActivity, "Text is Empty !", Toast.LENGTH_SHORT).show()
         } else {
             isProgressVisible.value = true
-            retrofit.getPercentage(firstName, secondName, Constant.API_KEY, Constant.HOST)
+            api.getPercentage(firstName, secondName, Constant.API_KEY, Constant.HOST)
                 .enqueue(object : Callback<LoveModel> {
                     override fun onResponse(p0: Call<LoveModel>, response: Response<LoveModel>) {
                         isProgressVisible.value = false

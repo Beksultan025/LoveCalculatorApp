@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object LoveModule {
 
     @Provides
-    fun getRetrofit(): LoveApiService {
+    fun getLoveApiService(): LoveApiService {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://love-calculator.p.rapidapi.com/")
             .addConverterFactory(GsonConverterFactory.create())
