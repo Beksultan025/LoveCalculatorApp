@@ -10,5 +10,5 @@ data class LoveModel(
     val secondName: String,
     val percentage: String,
     val result: String
-) : Serializable
+): Serializable
 
