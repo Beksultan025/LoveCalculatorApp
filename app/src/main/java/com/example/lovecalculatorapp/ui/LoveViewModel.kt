@@ -1,12 +1,11 @@
 package com.example.lovecalculatorapp.ui
 
-import android.app.Activity
-import android.content.Intent
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lovecalculatorapp.data.LoveApiService
-import com.example.lovecalculatorapp.data.LoveModel
+import com.example.lovecalculatorapp.data.local.LoveDataBase
+import com.example.lovecalculatorapp.data.local.LoveEntity
+import com.example.lovecalculatorapp.data.network.LoveApiService
+import com.example.lovecalculatorapp.data.network.LoveModel
 import com.example.lovecalculatorapp.utils.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
@@ -16,19 +15,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoveViewModel @Inject constructor(
-    private val api: LoveApiService
+    private val api: LoveApiService,
+    private val loveDataBase: LoveDataBase
 ) : ViewModel() {
 
-    var isProgressVisible = MutableLiveData(false)
+    val isProgressVisible = MutableLiveData(false)
+    val loveToastData = MutableLiveData<String>()
+    val loveData = MutableLiveData<LoveModel>()
 
     fun getPercentage(
         firstName: String,
-        secondName: String,
-        firstActivity: Activity,
-        secondActivity: Activity
+        secondName: String
     ) {
         if (firstName.isEmpty() || secondName.isEmpty()) {
-            Toast.makeText(firstActivity, "Text is Empty !", Toast.LENGTH_SHORT).show()
+            loveToastData.value = "Text is empty!"
         } else {
             isProgressVisible.value = true
             api.getPercentage(firstName, secondName, Constant.API_KEY, Constant.HOST)
@@ -36,17 +36,23 @@ class LoveViewModel @Inject constructor(
                     override fun onResponse(p0: Call<LoveModel>, response: Response<LoveModel>) {
                         isProgressVisible.value = false
                         if (response.isSuccessful && response.body() != null) {
-                            val intent = Intent(firstActivity, secondActivity::class.java)
-                            intent.putExtra(SecondActivity.ARG_LOVE_MODEL_KEY, response.body())
-                            firstActivity.startActivity(intent)
+                            val data = response.body()!!
+                            loveDataBase.loveDao().insert(
+                                LoveEntity(
+                                    firstName = data.firstName,
+                                    secondName = data.secondName,
+                                    percentage = data.percentage.toInt(),
+                                    result = data.result
+                                )
+                            )
+                            loveData.value = data
                         }
                     }
 
                     override fun onFailure(p0: Call<LoveModel>, p1: Throwable) {
-                        isProgressVisible.value = true
-                        Toast.makeText(firstActivity, "Error !", Toast.LENGTH_SHORT).show()
+                        isProgressVisible.value = false
+                        loveToastData.value = "Error :$p1"
                     }
-
                 })
         }
     }

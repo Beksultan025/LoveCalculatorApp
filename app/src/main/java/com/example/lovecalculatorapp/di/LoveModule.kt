@@ -1,6 +1,8 @@
 package com.example.lovecalculatorapp.di
 
-import com.example.lovecalculatorapp.data.LoveApiService
+import com.example.lovecalculatorapp.App
+import com.example.lovecalculatorapp.data.local.LoveDataBase
+import com.example.lovecalculatorapp.data.network.LoveApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,5 +21,10 @@ object LoveModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         return retrofit.create(LoveApiService::class.java)
+    }
+
+    @Provides
+    fun getLoveDataBase(): LoveDataBase {
+        return App().getInstance()!!
     }
 }

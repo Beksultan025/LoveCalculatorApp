@@ -8,4 +8,11 @@
     <string name="you_and_me">You and Me</string>
     <string name="your_score">Your Score</string>
     <string name="try_again">Try Again</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_history">History of LoveApp</string>
+    <string name="are_you_sure">Вы точно хотите удалить?</string>
+    <string name="yes">Да</string>
+    <string name="No">Нет</string>
+    <string name="results">Results</string>
 </resources>

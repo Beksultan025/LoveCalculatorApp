@@ -50,6 +50,8 @@
         android:layout_marginHorizontal="24dp"
         android:background="@drawable/rounded_edit_text"
         android:hint="@string/me"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
         android:importantForAutofill="no"
         android:padding="12dp"
         app:layout_constraintTop_toBottomOf="@id/tv_first_name"
@@ -73,6 +75,8 @@
         android:layout_marginHorizontal="24dp"
         android:background="@drawable/rounded_edit_text"
         android:hint="@string/you"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
         android:importantForAutofill="no"
         android:padding="12dp"
         app:layout_constraintTop_toBottomOf="@id/tv_second_name"
@@ -87,9 +91,9 @@
         android:text="@string/calculate"
         android:textSize="28sp"
         app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_second_name"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/et_second_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

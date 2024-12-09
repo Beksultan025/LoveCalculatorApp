@@ -1,9 +1,10 @@
 package com.example.lovecalculatorapp.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lovecalculatorapp.data.LoveModel
+import com.example.lovecalculatorapp.data.network.LoveModel
 import com.example.lovecalculatorapp.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
@@ -15,18 +16,27 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        loveDataObserve()
-        binding.btnTryAgain.setOnClickListener {
-            finish()
-        }
+        loveData()
+        setupListeners()
     }
 
     @SuppressLint("SetTextI18n")
-    fun loveDataObserve() = with(binding) {
+    fun loveData() = with(binding) {
         val data = intent.getSerializableExtra(ARG_LOVE_MODEL_KEY) as LoveModel
         tvYouMe.text = "${data.firstName} and ${data.secondName}"
         tvPercentage.text = "${data.percentage}%"
         tvResult.text = data.result
+    }
+
+    private fun setupListeners() = with(binding){
+        btnTryAgain.setOnClickListener {
+            finish()
+        }
+        tvResultsHistory.setOnClickListener {
+            startActivity(
+                Intent(this@SecondActivity, LoveHistoryActivity::class.java)
+            )
+        }
     }
 
     companion object {
